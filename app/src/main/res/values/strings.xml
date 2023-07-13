@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Homework4</string>
+    <string name="user_photo">User photo</string>
+
+    <string name="item_id">id: %1$d</string>
+    <string name="enter_url_image">Enter url image</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="enter_first_name">Enter first name</string>
+    <string name="enter_last_name">Enter last name</string>
+    <string name="save">Save</string>
 </resources>
