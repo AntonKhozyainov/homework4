@@ -9,25 +9,23 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.khozyainov.homework4.EditUserInformationFragment.Companion.FRAGMENT_RESULT_EXTRA
-import ru.khozyainov.homework4.EditUserInformationFragment.Companion.USER_EXTRA
+import ru.khozyainov.homework4.UserDetailFragment.Companion.FRAGMENT_RESULT_EXTRA
+import ru.khozyainov.homework4.UserDetailFragment.Companion.USER_EXTRA
 import ru.khozyainov.homework4.databinding.FragmentUserListBinding
 
-class UserListFragment: Fragment() {
+class UserListFragment : Fragment() {
+
+    private val usersListManager: UsersListManager
+        get() = (activity?.application as App).userListManager
+
+    private val userListener: (user: List<User>) -> Unit = { userAdapter.items = it }
 
     private lateinit var binding: FragmentUserListBinding
 
     private lateinit var userAdapter: UserAdapter
 
-    private val contactService: UsersService
-        get() = (activity?.application as App).userService
-
-    private val userListener: (user: List<User>) -> Unit = { userAdapter.items = it }
-
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentUserListBinding.inflate(inflater, container, false)
         return binding.root
@@ -38,19 +36,18 @@ class UserListFragment: Fragment() {
 
         initList()
         setListeners()
-
     }
 
     override fun onDestroy() {
-        contactService.removeListener(userListener)
+        usersListManager.removeListener(userListener)
         super.onDestroy()
     }
 
 
     private fun setListeners() {
-        contactService.addListener(userListener)
+        usersListManager.addListener(userListener)
 
-        setFragmentResultListener(FRAGMENT_RESULT_EXTRA){ _, bundle ->
+        setFragmentResultListener(FRAGMENT_RESULT_EXTRA) { _, bundle ->
 
             val userExtra =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
@@ -58,19 +55,17 @@ class UserListFragment: Fragment() {
                 else
                     bundle.getParcelable(USER_EXTRA)
 
-            userExtra?.let {
-                contactService.updateUser(it)
-            }
+            if (userExtra != null) usersListManager.updateUser(userExtra)
 
         }
     }
 
-    private fun initList(){
-        userAdapter = UserAdapter{ user ->
-            navigation().navigateToEditUserFragment(user)
+    private fun initList() {
+        userAdapter = UserAdapter { user ->
+            (requireContext() as Navigator).navigateToDetailUserFragment(user)
         }
 
-        with(binding.usersRecyclerView){
+        with(binding.usersRecyclerView) {
             adapter = userAdapter
             layoutManager = LinearLayoutManager(requireContext())
             (itemAnimator as? DefaultItemAnimator)?.supportsChangeAnimations = false

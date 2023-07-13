@@ -61,7 +61,7 @@
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="id: 1231234124"/>
+            tools:text="id: 1231234124" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

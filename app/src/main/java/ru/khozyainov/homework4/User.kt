@@ -10,4 +10,4 @@ data class User(
     val lastName: String,
     val phoneNumber: String,
     val photoUrl: String
-): Parcelable
+) : Parcelable

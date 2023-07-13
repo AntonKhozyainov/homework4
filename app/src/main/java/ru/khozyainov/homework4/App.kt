@@ -4,5 +4,5 @@ import android.app.Application
 
 class App: Application() {
 
-    val userService = UsersService()
+    val userListManager = UsersListManager()
 }

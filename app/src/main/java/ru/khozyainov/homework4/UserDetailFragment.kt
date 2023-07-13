@@ -10,19 +10,19 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import ru.khozyainov.homework4.databinding.FragmentEditUserInformationBinding
+import ru.khozyainov.homework4.databinding.FragmentUserDetailBinding
 import java.lang.Exception
 
-class EditUserInformationFragment : Fragment() {
+class UserDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentEditUserInformationBinding
+    private lateinit var binding: FragmentUserDetailBinding
 
     private lateinit var user: User
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentEditUserInformationBinding.inflate(inflater, container, false)
+        binding = FragmentUserDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,7 +39,7 @@ class EditUserInformationFragment : Fragment() {
             saveButton.setOnClickListener {
                 updateUser()
                 setFragmentResult(FRAGMENT_RESULT_EXTRA, bundleOf(USER_EXTRA to user))
-                navigation().navigateToPopBackStack()
+                (requireContext() as Navigator).navigateToPopBackStack()
             }
 
             userInformationImageUrlEditText.addTextChangedListener(object : TextWatcher {
@@ -91,8 +91,10 @@ class EditUserInformationFragment : Fragment() {
         const val USER_EXTRA = "USER_EXTRA"
 
         @JvmStatic
-        fun newInstant(user: User) = EditUserInformationFragment().apply {
-            arguments = bundleOf(USER_EXTRA to user)
+        fun newInstant(user: User): UserDetailFragment {
+            val userDetailFragment = UserDetailFragment()
+            userDetailFragment.arguments = bundleOf(USER_EXTRA to user)
+            return userDetailFragment
         }
     }
 }
