@@ -25,9 +25,7 @@ class DFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentDBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,7 +39,7 @@ class DFragment : Fragment() {
         }
     }
 
-    interface NavToFragmentBClickListener{
+    interface NavToFragmentBClickListener {
         fun onPopBackStackToFragmentBButtonClicked()
     }
 

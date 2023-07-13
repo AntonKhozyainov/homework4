@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import ru.khozyainov.homework4.databinding.FragmentBBinding
 import java.lang.RuntimeException
 
-class BFragment: Fragment() {
+class BFragment : Fragment() {
 
     private lateinit var binding: FragmentBBinding
 
@@ -25,9 +25,7 @@ class BFragment: Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentBBinding.inflate(inflater, container, false)
         return binding.root
@@ -48,16 +46,16 @@ class BFragment: Fragment() {
         }
     }
 
-    interface NavigateClickListener{
+    interface NavigateClickListener {
         fun onNavToFragmentCButtonClicked(text: String)
         fun onNavToBackButtonClicked()
     }
 
-    companion object{
+    companion object {
 
         const val FRAGMENT_B_TAG = "FRAGMENT_B_TAG"
 
         @JvmStatic
-        fun newInstance(): BFragment = BFragment()
+        fun newInstance() = BFragment()
     }
 }

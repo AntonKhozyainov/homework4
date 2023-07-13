@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import ru.khozyainov.homework4.databinding.FragmentCBinding
 import java.lang.RuntimeException
 
-class CFragment: Fragment() {
+class CFragment : Fragment() {
 
     private lateinit var binding: FragmentCBinding
 
@@ -26,9 +26,7 @@ class CFragment: Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentCBinding.inflate(inflater, container, false)
         return binding.root
@@ -51,7 +49,7 @@ class CFragment: Fragment() {
         }
     }
 
-    interface NavigateClickListener{
+    interface NavigateClickListener {
         fun onNavToFragmentAButtonClicked()
         fun onNavToFragmentDButtonClicked()
     }
@@ -63,9 +61,10 @@ class CFragment: Fragment() {
         private const val TEXT_RES_EXTRA = "ARG_TEXT"
 
         @JvmStatic
-        fun newInstance(text: String) =
-            CFragment().apply {
-                arguments = bundleOf(TEXT_RES_EXTRA to text)
-            }
+        fun newInstance(text: String): CFragment {
+            val cFragment = CFragment()
+            cFragment.arguments = bundleOf(TEXT_RES_EXTRA to text)
+            return cFragment
+        }
     }
 }

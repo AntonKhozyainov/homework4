@@ -1,7 +1,5 @@
 package ru.khozyainov.homework4
 
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
@@ -31,7 +29,7 @@ class MainActivity : AppCompatActivity(), AFragment.NavToFragmentBClickListener,
     override fun onNavToFragmentDButtonClicked() {
         supportFragmentManager.commit {
             addToBackStack(CFragment.FRAGMENT_C_TAG)
-            replace(R.id.fragmentContainerView, DFragment.newInstance())
+            replace(R.id.fragmentContainerView, DFragment.newInstance(), DFragment.FRAGMENT_D_TAG)
         }
     }
 
@@ -44,21 +42,15 @@ class MainActivity : AppCompatActivity(), AFragment.NavToFragmentBClickListener,
     override fun onNavToFragmentCButtonClicked(text: String) {
         supportFragmentManager.commit {
             addToBackStack(BFragment.FRAGMENT_B_TAG)
-            replace(R.id.fragmentContainerView, CFragment.newInstance(text))
+            replace(R.id.fragmentContainerView, CFragment.newInstance(text), CFragment.FRAGMENT_C_TAG)
         }
     }
 
     override fun onNavToFragmentBButtonClicked() {
         supportFragmentManager.commit {
             addToBackStack(AFragment.FRAGMENT_A_TAG)
-            replace(R.id.fragmentContainerView, BFragment.newInstance())
+            replace(R.id.fragmentContainerView, BFragment.newInstance(), BFragment.FRAGMENT_B_TAG)
         }
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newIntent(context: Context) = Intent(context, MainActivity::class.java)
     }
 
 }
