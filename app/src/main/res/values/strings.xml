@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Homework4</string>
+
+    <string name="nav_to_a">Navigate to fragment A</string>
+    <string name="nav_to_b">Navigate to fragment B</string>
+    <string name="nav_to_c">Navigate to fragment C</string>
+    <string name="nav_to_d">Navigate to fragment D</string>
+
+    <string name="back">Back</string>
+
+    <string name="message_for_c">Hello Fragment C</string>
+
+    <string name="fragment_a_title">Fragment A</string>
+    <string name="fragment_b_title">Fragment B</string>
+    <string name="fragment_c_title">Fragment C</string>
+    <string name="fragment_d_title">Fragment D</string>
+
 </resources>
